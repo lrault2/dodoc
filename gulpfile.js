@@ -22,9 +22,7 @@ var pluginsScripts = [
 ];
 var userScripts = [
   'dodoc.js',
-  'client/js/common.js',
-  'client/js/modules/_modals.js',
-  'client/js/_global.js',
+  'client/js/*',
 ];
 
 var templateCss = [
@@ -100,9 +98,9 @@ gulp.task('script-plugins', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-//   gulp.watch(['client/js/*.js', 'client/js/libs/*.js','client/js/capture/*.js',], ['lint']);
+  gulp.watch(['client/js/*.js', 'client/js/libs/**/.js'], ['lint']);
   gulp.watch( ['client/sass/*.scss', 'client/sass/basic/*.scss'].concat(templateCss).concat(userCss), ['sass', 'templatesSass', 'css']);
 });
 
 // Default Task
-gulp.task('default', ['sass', 'templatesSass', 'css', 'script-plugins', 'watch']);
+gulp.task('default', ['sass', 'templatesSass', 'css', 'script-plugins', 'lint', 'watch']);

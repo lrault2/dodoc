@@ -1,3 +1,4 @@
+"use strict";
 
 window.sessionId = '';
 window.socket = io.connect();
@@ -21,15 +22,17 @@ socket.on("*",function(event,d) {
   var logs = [];
   switch(event) {
     case "mediaCreated":
-      for(md in d) {
-        var thisMedia = d[md];
-        var pathToProjectWhoGotANewMedia = '/'+thisMedia.slugFolderName+'/'+thisMedia.slugProjectName;
-        logs.push(
-          dodoc.lang.modal.newMediaCreatedAtPath+
-            '<a href="'+pathToProjectWhoGotANewMedia+'">'+
-              pathToProjectWhoGotANewMedia+
-            '</a>'
-          );
+      for(var md in d) {
+        if(d.hasOwnProperty(md)){
+          var thisMedia = d[md];
+          var pathToProjectWhoGotANewMedia = '/'+thisMedia.slugFolderName+'/'+thisMedia.slugProjectName;
+          logs.push(
+            dodoc.lang.modal.newMediaCreatedAtPath+
+              '<a href="'+pathToProjectWhoGotANewMedia+'">'+
+                pathToProjectWhoGotANewMedia+
+              '</a>'
+            );
+        }
       }
       break;
     case "folderCreated":

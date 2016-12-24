@@ -1,3 +1,5 @@
+"use strict";
+
 // set lang here
 var lang = 'fr';
 
